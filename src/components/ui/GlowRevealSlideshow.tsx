@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useRef, useEffect, useState } from 'react';
 import Image from 'next/image';
+import React, { useEffect, useRef, useState } from 'react';
 
 interface GlowRevealSlideshowProps {
   images: string[];

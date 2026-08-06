@@ -1,8 +1,8 @@
 'use client';
 
+import { AnimatePresence,motion } from 'framer-motion';
+import { ArrowUpRight,Check } from 'lucide-react';
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Check, ArrowUpRight } from 'lucide-react';
 
 interface BookingCTAProps {
   href: string;

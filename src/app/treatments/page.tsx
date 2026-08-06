@@ -1,13 +1,15 @@
 'use client';
 
+import { motion } from 'framer-motion';
+import { Sparkles } from 'lucide-react';
 import React, { useState } from 'react';
+
 import { treatments } from '@/data/treatmentsData';
-import BeforeAfterSlider from '@/components/ui/BeforeAfterSlider';
+
 import TreatmentQuiz from '@/components/quiz/TreatmentQuiz';
+import BeforeAfterSlider from '@/components/ui/BeforeAfterSlider';
 import BookingCTA from '@/components/ui/BookingCTA';
 import TiltCard from '@/components/ui/TiltCard';
-import { Sparkles } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 export default function TreatmentsPage() {
   const [isQuizOpen, setIsQuizOpen] = useState(false);

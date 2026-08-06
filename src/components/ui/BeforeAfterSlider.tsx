@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useRef, useState, useEffect, KeyboardEvent } from 'react';
-import Image from 'next/image';
 import { ChevronsLeftRight } from 'lucide-react';
+import Image from 'next/image';
+import React, { KeyboardEvent,useEffect, useRef, useState } from 'react';
 
 interface BeforeAfterSliderProps {
   beforeImage: string;

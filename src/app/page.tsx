@@ -1,15 +1,15 @@
 'use client';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const fadeInUp = {
+const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
 };
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -19,13 +19,15 @@ const staggerContainer = {
   }
 };
 
-import GlowRevealSlideshow from '@/components/ui/GlowRevealSlideshow';
-import BeforeAfterSlider from '@/components/ui/BeforeAfterSlider';
-import TreatmentQuiz from '@/components/quiz/TreatmentQuiz';
-import TiltCard from '@/components/ui/TiltCard';
-import BookingCTA from '@/components/ui/BookingCTA';
-import { treatments } from '@/data/treatmentsData';
 import { useState } from 'react';
+
+import { treatments } from '@/data/treatmentsData';
+
+import TreatmentQuiz from '@/components/quiz/TreatmentQuiz';
+import BeforeAfterSlider from '@/components/ui/BeforeAfterSlider';
+import BookingCTA from '@/components/ui/BookingCTA';
+import GlowRevealSlideshow from '@/components/ui/GlowRevealSlideshow';
+import TiltCard from '@/components/ui/TiltCard';
 
 const HERO_IMAGES = [
   "/images/young-woman-skin-care-model-2-scaled.jpg",

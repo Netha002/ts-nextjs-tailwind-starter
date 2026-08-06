@@ -1,10 +1,12 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence, useMotionValue, useTransform, animate } from 'framer-motion';
-import { X, ArrowLeft, ArrowUpRight, Check, Lock, Unlock } from 'lucide-react';
+import { animate,AnimatePresence, motion, useMotionValue, useTransform } from 'framer-motion';
+import { ArrowLeft, ArrowUpRight, Check, Lock, Unlock,X } from 'lucide-react';
+import React, { useEffect,useState } from 'react';
+
+import { calculateSkinScore, QuizState,ScoreResult } from '@/lib/skinScore';
+
 import { getTreatmentBySlug, TreatmentData } from '@/data/treatmentsData';
-import { calculateSkinScore, ScoreResult, QuizState } from '@/lib/skinScore';
 
 interface TreatmentQuizProps {
   isOpen: boolean;
