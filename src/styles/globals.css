@@ -3,25 +3,21 @@
 
 @theme {
   /* Font configuration */
-  --font-primary: 'Inter', system-ui, sans-serif;
+  --font-primary: var(--font-cormorant), 'Cormorant Garamond', serif;
+  --font-secondary: var(--font-outfit), 'Outfit', sans-serif;
+  --font-accent: var(--font-cormorant), 'Cormorant Garamond', serif;
 
-  /* Primary color palette - converted to modern oklch format */
-  --color-primary-50: oklch(0.97 0.024 213.79);
-  --color-primary-100: oklch(0.94 0.05 213.79);
-  --color-primary-200: oklch(0.86 0.1 213.79);
-  --color-primary-300: oklch(0.76 0.15 213.79);
-  --color-primary-400: oklch(0.7 0.19 213.79);
-  --color-primary-500: oklch(0.61 0.22 213.79);
-  --color-primary-600: oklch(0.52 0.2 213.79);
-  --color-primary-700: oklch(0.43 0.18 213.79);
-  --color-primary-800: oklch(0.37 0.15 213.79);
-  --color-primary-900: oklch(0.31 0.12 213.79);
-  --color-primary-950: oklch(0.18 0.07 213.79);
+  /* Primary color palette from pH5 Aesthetics */
+  --color-primary: #7C1824;
+  --color-secondary: #CE4927;
+  --color-accent: #EFBA60;
+  --color-tertiary: #BDD1D8;
+  --color-text: #151515;
+  --color-background: #ECE4D8;
+  --color-alternate: #E2D6C3;
+  --color-border: #BDD1D8;
 
-  /* Dark color */
-  --color-dark: #222222;
-
-  /* Animation configuration */
+  /* Keep base animate configuration */
   --animate-flicker: flicker 3s linear infinite;
   --animate-shimmer: shimmer 1.3s linear infinite;
 }
@@ -62,50 +58,37 @@
 }
 
 @layer base {
-  /* inter var - latin */
-  @font-face {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 100 900;
-    font-display: block;
-    src: url('/fonts/inter-var-latin.woff2') format('woff2');
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-      U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
-      U+2215, U+FEFF, U+FFFD;
-  }
-
-  .cursor-newtab {
-    cursor: url('/images/new-tab.png') 10 10, pointer;
-  }
-
   /* #region  /**=========== Typography =========== */
-  .h0 {
-    @apply font-primary text-3xl font-bold md:text-5xl;
+  body {
+    @apply font-secondary text-[18px] font-medium leading-[1.55em] text-text bg-background;
   }
 
-  h1,
-  .h1 {
-    @apply font-primary text-2xl font-bold md:text-4xl;
+  h1, .h1 {
+    @apply font-primary text-[50px] md:text-[90px] font-normal leading-[1em] tracking-[-5px];
   }
 
-  h2,
-  .h2 {
-    @apply font-primary text-xl font-bold md:text-3xl;
+  h2, .h2 {
+    @apply font-primary text-[42px] md:text-[74px] font-normal leading-[1.05em] tracking-[-3px];
   }
 
-  h3,
-  .h3 {
-    @apply font-primary text-lg font-bold md:text-2xl;
+  h3, .h3 {
+    @apply font-primary text-[36px] md:text-[60px] font-normal leading-[1.1em] tracking-[-2px];
   }
 
-  h4,
-  .h4 {
-    @apply font-primary text-base font-bold md:text-lg;
+  h4, .h4 {
+    @apply font-primary text-[28px] md:text-[46px] font-normal leading-[1.15em] tracking-[-2px];
   }
 
-  body,
-  .p {
-    @apply font-primary text-sm md:text-base;
+  h5, .h5 {
+    @apply font-primary text-[24px] md:text-[32px] font-normal leading-[1.2em] tracking-[-1px];
+  }
+  
+  h6, .h6 {
+    @apply font-primary text-[18px] font-normal leading-[1.33em] tracking-[1px] uppercase;
+  }
+
+  .accent-text {
+    @apply font-accent text-[18px] font-medium italic leading-[1.55em];
   }
   /* #endregion  /**======== Typography =========== */
 

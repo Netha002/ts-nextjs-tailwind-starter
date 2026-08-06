@@ -49,14 +49,39 @@ export const metadata: Metadata = {
   // ],
 };
 
+import { Cormorant_Garamond, Outfit } from 'next/font/google';
+
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-cormorant',
+});
+
+const outfit = Outfit({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600'],
+  variable: '--font-outfit',
+});
+
+import Footer from '@/components/layout/Footer';
+import Header from '@/components/layout/Header';
+import SignatureCursor from '@/components/ui/SignatureCursor';
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html>
-      <body>{children}</body>
+    <html lang="en" className={`${cormorant.variable} ${outfit.variable}`}>
+      <body className="flex flex-col min-h-screen font-secondary bg-background text-text">
+        <SignatureCursor />
+        <Header />
+        <main className="flex-grow">
+          {children}
+        </main>
+        <Footer />
+      </body>
     </html>
   );
 }

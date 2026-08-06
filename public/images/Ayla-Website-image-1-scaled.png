@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000">
+  <rect width="1000" height="1000" fill="#E2D6C3"/>
+  <text x="500" y="500" font-family="sans-serif" font-size="40" fill="#7C1824" text-anchor="middle">Interior Image Placeholder</text>
+</svg>
