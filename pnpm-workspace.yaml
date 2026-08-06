@@ -1,0 +1,6 @@
+allowBuilds:
+  '@tailwindcss/oxide': set this to true or false
+  sharp: set this to true or false
+  unrs-resolver: set this to true or false
+minimumReleaseAgeExclude:
+  - swiper@14.1.0
