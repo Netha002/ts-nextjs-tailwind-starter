@@ -1,5 +1,5 @@
 'use client';
-import { ArrowUpRight, Menu, Search } from 'lucide-react';
+import { ArrowUpRight, Menu, Search, X } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -15,11 +15,12 @@ const navigation = [
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === '/';
 
-  // Header should be transparent with white text ONLY on the homepage before scrolling
-  const isDarkHeader = isHome && !scrolled;
+  // Header should be transparent with white text ONLY on the homepage before scrolling and when mobile menu is closed
+  const isDarkHeader = isHome && !scrolled && !isMobileMenuOpen;
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -27,17 +28,29 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Prevent scrolling when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
+
   return (
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-        scrolled
+        scrolled || isMobileMenuOpen
           ? 'bg-background shadow-md py-4'
           : isHome
           ? 'bg-transparent py-8'
           : 'bg-background py-6'
       }`}
     >
-      <div className='layout flex items-center justify-between'>
+      <div className='layout flex items-center justify-between relative z-50'>
         {/* Logo */}
         <Link
           href='/'
@@ -154,13 +167,43 @@ export default function Header() {
 
         {/* Mobile Menu Toggle */}
         <button
-          className={`lg:hidden p-2 ${
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label='Toggle mobile menu'
+          className={`lg:hidden p-2 transition-colors ${
             !isDarkHeader ? 'text-primary' : 'text-white'
           }`}
         >
-          <Menu size={28} />
+          {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
+
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div className='fixed inset-0 bg-background z-40 flex flex-col pt-[100px] px-6 pb-6 lg:hidden overflow-y-auto'>
+          <nav className='flex flex-col gap-6 mt-4'>
+            {navigation.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className='font-primary text-[24px] text-primary hover:text-secondary italic tracking-wide border-b border-gray-100 pb-4 transition-colors'
+              >
+                {item.name}
+              </Link>
+            ))}
+          </nav>
+          <div className='mt-8 flex flex-col gap-4'>
+            <a
+              href='tel:9347871336'
+              onClick={() => setIsMobileMenuOpen(false)}
+              className='flex items-center justify-center gap-2 px-6 py-4 rounded-[30px] font-secondary text-[16px] font-medium bg-accent text-secondary hover:bg-primary hover:text-alternate transition-colors'
+            >
+              <span>Book Appointment</span>
+              <ArrowUpRight size={20} strokeWidth={2} />
+            </a>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
